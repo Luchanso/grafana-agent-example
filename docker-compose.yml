@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  grafana_agent:
+    container_name: grafana-agent
+    image: grafana/agent:v0.21.1
+    ports:
+      - 3001:80
+    volumes:
+      - ./tmp/agent:/etc/agent/dat
+      - ./config.yml:/etc/agent/agent.yaml
+    networks:
+      - app
+networks:
+  app:
+    external: true
+    name: app
